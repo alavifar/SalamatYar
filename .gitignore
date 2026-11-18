@@ -1,0 +1,9 @@
+# Per-user data created at runtime
+settings.json
+stats.json
+resume.json
+*.log
+*.lnk
+
+# Sounds are generated on first run
+sounds/
