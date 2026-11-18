@@ -4,6 +4,8 @@ A free health reminder for people who spend hours at a computer. Windows 10 and 
 
 **Languages:** فارسی · English · العربية · Русский · 中文 — [راهنمای فارسی](README.fa.md)
 
+**[Download SalamatYar (ZIP, ready to run)](https://github.com/alavifar/SalamatYar/raw/main/dist/SalamatYar.zip)**
+
 ![Dashboard](docs/dashboard-en.png)
 
 ## What it does
@@ -21,9 +23,11 @@ A free health reminder for people who spend hours at a computer. Windows 10 and 
 
 ## Run it
 
-1. Download the repository (Code → Download ZIP) and extract it.
-2. Double-click `Run.cmd`. If Windows shows a security warning, choose Run or Open.
-3. On first run the app generates its sound files and an icon shortcut named `SalamatYar` in the same folder.
+1. [Download SalamatYar.zip](https://github.com/alavifar/SalamatYar/raw/main/dist/SalamatYar.zip) and extract the whole folder.
+2. Double-click `SalamatYar.exe`.
+3. On first run the app generates its sound files in the same folder.
+
+The program is not code-signed, so Windows may show "Windows protected your PC" the first time. Choose **More info**, then **Run anyway**. `SalamatYar.exe` is only a small launcher for `SalamatYar.ps1`; its source is in [launcher/Launcher.cs](launcher/Launcher.cs). If you prefer not to run the launcher, double-click `Run.cmd` instead.
 
 Closing the window does not exit the app; it stays next to the Windows clock. Right-click its icon to exit.
 
@@ -43,7 +47,7 @@ The app never connects to the internet. Settings and statistics are stored only 
 
 ## How it is built
 
-A single PowerShell script (`SalamatYar.ps1`) with a WPF interface, so it runs on a stock Windows installation with nothing to install. Sounds and music are synthesized by the app itself. All interface text lives in `lang.json`.
+A single PowerShell script (`SalamatYar.ps1`) with a WPF interface, so it runs on a stock Windows installation with nothing to install. Sounds and music are synthesized by the app itself. All interface text lives in `lang.json`. `tools/build.ps1` compiles the launcher and builds the download package with the C# compiler that ships with Windows.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) to add a language, fix a translation or change the code.
 

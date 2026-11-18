@@ -10,6 +10,10 @@ Thank you for helping. Issues and pull requests are welcome in English or Persia
 | `lang.json` | All interface text, one entry per key, five languages in a fixed order |
 | `Run.cmd` | Starts the app without a console window |
 | `tools/audit-lang.ps1` | Checks that `lang.json` is complete and consistent |
+| `launcher/Launcher.cs` | Source of `SalamatYar.exe`, a small launcher that starts the script without a console window |
+| `tools/build.ps1` | Compiles the launcher and builds `dist/SalamatYar.zip`, the package users download |
+
+After changing the app, run `tools\build.ps1` so that `dist/SalamatYar.zip` matches the source.
 
 `SalamatYar.ps1` must stay saved as **UTF-8 with BOM**. Windows PowerShell 5.1 reads a BOM-less file in the system code page and breaks the non-Latin text.
 

@@ -4,6 +4,8 @@
 
 **زبان‌ها:** فارسی · English · العربية · Русский · 中文 — [English README](README.md)
 
+**[دانلود سلامت‌یار (فایل ZIP، آماده‌ی اجرا)](https://github.com/alavifar/SalamatYar/raw/main/dist/SalamatYar.zip)**
+
 ![داشبورد](docs/dashboard-fa.png)
 
 ## چه می‌کند
@@ -17,9 +19,11 @@
 
 ## اجرا
 
-1. مخزن را دانلود کنید (Code ← Download ZIP) و از حالت فشرده خارج کنید.
-2. روی `Run.cmd` دوبار کلیک کنید. اگر ویندوز هشدار امنیتی داد، «Run» یا «Open» را بزنید.
-3. بار اول فایل‌های صدا و میان‌بر آیکون‌دار `SalamatYar` در همان پوشه ساخته می‌شود.
+1. [فایل SalamatYar.zip](https://github.com/alavifar/SalamatYar/raw/main/dist/SalamatYar.zip) را دانلود کنید و کل پوشه را از حالت فشرده خارج کنید.
+2. روی `SalamatYar.exe` دوبار کلیک کنید.
+3. بار اول فایل‌های صدا در همان پوشه ساخته می‌شود.
+
+برنامه امضای دیجیتال ندارد و ممکن است ویندوز بار اول پیام «Windows protected your PC» بدهد. روی **More info** و سپس **Run anyway** بزنید. `SalamatYar.exe` فقط یک راه‌انداز کوچک برای `SalamatYar.ps1` است و کد آن در [launcher/Launcher.cs](launcher/Launcher.cs) هست. اگر نمی‌خواهید راه‌انداز را اجرا کنید، روی `Run.cmd` دوبار کلیک کنید.
 
 بستن پنجره برنامه را نمی‌بندد؛ نشان آن کنار ساعت ویندوز می‌ماند. برای خروج روی آن راست‌کلیک کنید.
 

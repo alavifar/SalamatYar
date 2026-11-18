@@ -5,5 +5,8 @@ resume.json
 *.log
 *.lnk
 
+# Built by tools/build.ps1; the copy users download is inside dist/SalamatYar.zip
+/SalamatYar.exe
+
 # Sounds are generated on first run
 sounds/
