@@ -4,7 +4,7 @@
 
 **زبان‌ها:** فارسی · English · العربية · Русский · 中文 — [English README](README.md)
 
-**[دانلود سلامت‌یار (فایل ZIP، آماده‌ی اجرا)](https://github.com/alavifar/SalamatYar/raw/main/dist/SalamatYar.zip)**
+**[دانلود سلامت‌یار (فایل ZIP، آماده‌ی اجرا)](https://github.com/alavifar/SalamatYar/releases/latest/download/SalamatYar.zip)**
 
 ![داشبورد](docs/dashboard-fa.png)
 
@@ -21,7 +21,7 @@
 
 ## اجرا
 
-1. [فایل SalamatYar.zip](https://github.com/alavifar/SalamatYar/raw/main/dist/SalamatYar.zip) را دانلود کنید و کل پوشه را از حالت فشرده خارج کنید.
+1. [فایل SalamatYar.zip](https://github.com/alavifar/SalamatYar/releases/latest/download/SalamatYar.zip) را دانلود کنید و کل پوشه را از حالت فشرده خارج کنید.
 2. روی `SalamatYar.exe` دوبار کلیک کنید.
 3. بار اول فایل‌های صدا در همان پوشه ساخته می‌شود.
 

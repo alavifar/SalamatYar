@@ -4,12 +4,13 @@
 ![Platform: Windows 10 and 11](https://img.shields.io/badge/platform-Windows%2010%20%7C%2011-2563eb)
 ![Languages: 5](https://img.shields.io/badge/languages-fa%20%7C%20en%20%7C%20ar%20%7C%20ru%20%7C%20zh-7c3aed)
 ![No installation](https://img.shields.io/badge/install-not%20needed-d97706)
+[![Downloads](https://img.shields.io/github/downloads/alavifar/SalamatYar/total?color=0d9488)](https://github.com/alavifar/SalamatYar/releases)
 
 A free, open-source health reminder for people who spend hours at a computer: eye breaks with the 20-20-20 rule, movement and stretch breaks, and water reminders. Windows 10 and 11, nothing to install, no data leaves your computer.
 
 **Languages:** فارسی · English · العربية · Русский · 中文 — [راهنمای فارسی](README.fa.md)
 
-**[⬇ Download SalamatYar (ZIP, ready to run)](https://github.com/alavifar/SalamatYar/raw/main/dist/SalamatYar.zip)**
+**[⬇ Download SalamatYar (ZIP, ready to run)](https://github.com/alavifar/SalamatYar/releases/latest/download/SalamatYar.zip)**
 
 ![Dashboard](docs/dashboard-en.png)
 
@@ -36,7 +37,7 @@ If SalamatYar helps you, a ⭐ on this repository helps other people find it.
 
 ## Run it
 
-1. [Download SalamatYar.zip](https://github.com/alavifar/SalamatYar/raw/main/dist/SalamatYar.zip) and extract the whole folder.
+1. [Download SalamatYar.zip](https://github.com/alavifar/SalamatYar/releases/latest/download/SalamatYar.zip) and extract the whole folder.
 2. Double-click `SalamatYar.exe`.
 3. On first run the app generates its sound files in the same folder.
 
