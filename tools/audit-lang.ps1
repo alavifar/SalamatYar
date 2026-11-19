@@ -12,6 +12,16 @@ $used = @{}
 foreach ($m in [regex]::Matches($ps, '\[\[(\w+)\]\]')) { $used[$m.Groups[1].Value] = $true }
 foreach ($m in [regex]::Matches($ps, "\bT '(\w+)'")) { $used[$m.Groups[1].Value] = $true }
 
+# Numbered pools (eyeTip1, eyeTip2, ...) are read by prefix, so they count as used;
+# their numbering must be continuous because the app stops at the first gap.
+foreach ($prefix in 'eyeTip', 'moveTip', 'waterTip', 'dashTip') {
+    $nums = @($keys.Keys | Where-Object { $_ -match "^$prefix(\d+)$" } | ForEach-Object { [int]($_ -replace "^$prefix", '') } | Sort-Object)
+    for ($n = 0; $n -lt $nums.Count; $n++) {
+        $used["$prefix$($nums[$n])"] = $true
+        if ($nums[$n] -ne $n + 1) { [void]$issues.Add("POOL-GAP: $prefix expected $($n + 1), found $($nums[$n])") }
+    }
+    if ($nums.Count -lt 4) { [void]$issues.Add("POOL-TOO-SMALL: $prefix has $($nums.Count)") }
+}
 foreach ($k in $used.Keys) { if (-not $keys.ContainsKey($k)) { [void]$issues.Add("USED-BUT-MISSING: $k") } }
 foreach ($k in $keys.Keys) { if (-not $used.ContainsKey($k)) { [void]$issues.Add("UNUSED: $k") } }
 

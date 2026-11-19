@@ -1,4 +1,4 @@
-﻿param([switch]$Minimized, [switch]$SelfTest, [string]$TestDir, [string]$Lang, [switch]$LangTest, [string]$Page, [string]$SwitchTo)
+﻿param([switch]$Minimized, [switch]$SelfTest, [string]$TestDir, [string]$Lang, [switch]$LangTest, [string]$Page, [string]$SwitchTo, [string]$Demo)
 # سلامت‌یار — یادآور سلامت هنگام کار با کامپیوتر
 $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, System.Xaml, System.Windows.Forms, System.Drawing
@@ -217,6 +217,7 @@ $Defaults = [ordered]@{
     Sound = $true; Music = $true; Volume = 60
     MusicEye = ''; MusicMove = ''           # مسیر آهنگ دلخواه؛ خالی یعنی آهنگ خود برنامه
     Theme = 'dark'                          # dark | light | auto
+    BreakMode = 'full'                      # full | window | tray
     Lang = ''                               # fa | en | ar | ru | zh
 }
 $Cfg = [ordered]@{}
@@ -234,6 +235,7 @@ if (Test-Path $CfgFile) {
     } catch { Log "settings: $_" }
 }
 if ('dark', 'light', 'auto' -notcontains $Cfg.Theme) { $Cfg.Theme = 'dark' }
+if ('full', 'window', 'tray' -notcontains $Cfg.BreakMode) { $Cfg.BreakMode = 'full' }
 function Save-Cfg { try { $Cfg | ConvertTo-Json | Set-Content $CfgFile -Encoding UTF8 } catch { Log "save cfg: $_" } }
 
 function New-Stats { @{ Date = (Get-Date).ToString('yyyy-MM-dd'); Work = 0.0; Eye = 0; Move = 0; Water = 0; Skipped = 0 } }
@@ -355,7 +357,7 @@ function Set-Arc($path, $frac, $c, $r) {
 $COL = @{ eye = '#2DD4BF'; move = '#FBBF24'; water = '#60A5FA' }
 
 # ---------- شناسنامه و نشان برنامه ----------
-$AppVersion = '1.2'
+$AppVersion = '1.3'
 $AuthorName = (T 'authorName')
 $AuthorLink = 'https://t.me/ShrAlavifar'
 $Signature = "$(T 'sigPrefix') $AuthorName — Telegram: $([char]0x200E)@ShrAlavifar"
@@ -616,6 +618,14 @@ $MainXaml = @'
                 <RadioButton x:Name="ThAuto" Tag="auto" Content="[[thAuto]]" Style="{StaticResource Nav}" GroupName="theme" ToolTip="[[ttThAuto]]"/>
               </StackPanel>
             </Grid>
+            <Grid Margin="0,6,0,0">
+              <TextBlock Text="[[dispLabel]]" Foreground="#D5DBEA" FontSize="13.5" VerticalAlignment="Center"/>
+              <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <RadioButton x:Name="DispFull" Tag="full" Content="[[dispFull]]" Style="{StaticResource Nav}" GroupName="disp" ToolTip="[[ttDispFull]]"/>
+                <RadioButton x:Name="DispWindow" Tag="window" Content="[[dispWindow]]" Style="{StaticResource Nav}" GroupName="disp" ToolTip="[[ttDispWindow]]"/>
+                <RadioButton x:Name="DispTray" Tag="tray" Content="[[dispTray]]" Style="{StaticResource Nav}" GroupName="disp" ToolTip="[[ttDispTray]]"/>
+              </StackPanel>
+            </Grid>
             <Border Height="1" Background="#232D47" Margin="0,12,0,4"/>
             <CheckBox x:Name="CkAuto" Content="[[ckAuto]]" Foreground="#D5DBEA" FontSize="13.5" Margin="0,12,0,0" Focusable="False"/>
             <Button x:Name="BtnShortcut" Content="[[btnShortcut]]" Style="{StaticResource Ghost}" Margin="0,14,0,0"/>
@@ -768,6 +778,40 @@ $ToastXaml = @'
 '@
 $ToastXaml = $ToastXaml.Replace('@NS@', $NS).Replace('@RES@', $ResXaml)
 
+# پنجره‌ی کوچک یادآور (حالت «پنجره»)
+$MiniXaml = @'
+<Window @NS@ Title="[[ovTitleWin]]" Width="420" SizeToContent="Height" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        Topmost="True" ShowInTaskbar="False" ShowActivated="False" ResizeMode="NoResize"
+        FlowDirection="@FLOW@" FontFamily="@FONT@" UseLayoutRounding="True">
+  <Window.Resources>@RES@</Window.Resources>
+  <Border Margin="8" CornerRadius="14" Background="#161E31" BorderBrush="#2B3757" BorderThickness="1">
+    <Border.Effect><DropShadowEffect BlurRadius="14" ShadowDepth="3" Opacity="0.45"/></Border.Effect>
+    <StackPanel Margin="18,14,18,14">
+      <Grid>
+        <StackPanel Margin="0,0,96,0">
+          <TextBlock x:Name="MnKicker" FontSize="12" FontWeight="SemiBold"/>
+          <TextBlock x:Name="MnTitle" Foreground="#F2F5FB" FontSize="17" FontWeight="SemiBold" Margin="0,2,0,0" TextWrapping="Wrap"/>
+        </StackPanel>
+        <TextBlock x:Name="MnTime" FlowDirection="LeftToRight" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#F2F5FB" FontSize="28" FontWeight="SemiBold"/>
+      </Grid>
+      <Grid Height="5" Margin="0,10,0,0">
+        <Grid.ColumnDefinitions><ColumnDefinition x:Name="MnColA" Width="1*"/><ColumnDefinition x:Name="MnColB" Width="0*"/></Grid.ColumnDefinitions>
+        <Border Grid.ColumnSpan="2" Background="#232D47" CornerRadius="2.5"/>
+        <Border x:Name="MnFill" CornerRadius="2.5"/>
+      </Grid>
+      <TextBlock x:Name="MnInstr" Foreground="#C5CDE0" FontSize="13" TextWrapping="Wrap" Margin="0,10,0,0"/>
+      <TextBlock x:Name="MnTip" Foreground="#E6EAF4" FontSize="13" TextWrapping="Wrap" LineHeight="21" Margin="0,6,0,0"/>
+      <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
+        <Button x:Name="MnDone" Content="[[btnDone]]" Style="{StaticResource Btn}" Padding="14,6" Margin="0,0,8,0"/>
+        <Button x:Name="MnLater" Content="[[btnLater]]" Style="{StaticResource Ghost}" Padding="14,6" Margin="0,0,8,0"/>
+        <Button x:Name="MnSkip" Content="[[btnSkip]]" Style="{StaticResource Ghost}" Padding="14,6"/>
+      </StackPanel>
+    </StackPanel>
+  </Border>
+</Window>
+'@
+$MiniXaml = $MiniXaml.Replace('@NS@', $NS).Replace('@RES@', $ResXaml)
+
 $ConfirmXaml = @'
 <Window @NS@ Title="[[confirmWin]]" Width="450" SizeToContent="Height" WindowStartupLocation="CenterOwner" WindowStyle="None"
         AllowsTransparency="True" Background="Transparent" ShowInTaskbar="False" ResizeMode="NoResize"
@@ -790,6 +834,7 @@ $ConfirmXaml = $ConfirmXaml.Replace('@NS@', $NS).Replace('@RES@', $ResXaml)
 
 $MainXaml = Themify (Localize $MainXaml); $OvXaml = Themify (Localize $OvXaml)
 $ToastXaml = Themify (Localize $ToastXaml); $ConfirmXaml = Themify (Localize $ConfirmXaml)
+$MiniXaml = Themify (Localize $MiniXaml)
 
 $App = New-Object Windows.Application
 $App.ShutdownMode = 'OnExplicitShutdown'
@@ -813,6 +858,7 @@ function Ask-Confirm($title, $text, $yes) {
 $Win = [Windows.Markup.XamlReader]::Parse($MainXaml)
 $Ov = [Windows.Markup.XamlReader]::Parse($OvXaml)
 $Toast = [Windows.Markup.XamlReader]::Parse($ToastXaml)
+$Mini = [Windows.Markup.XamlReader]::Parse($MiniXaml)
 if ($SelfTest) { $Ov.Background = Br '#0A0F1C'; $Win.Topmost = $true }
 
 $C = @{}
@@ -828,6 +874,8 @@ $C['OvSig'] = $Ov.FindName('OvSig')
 foreach ($d in $SliderDefs) { $C["$($d.K)Sl"] = $Win.FindName("$($d.K)Sl"); $C["$($d.K)Val"] = $Win.FindName("$($d.K)Val") }
 foreach ($n in 'OvKicker', 'OvTitle', 'OvInstr', 'OvArc', 'OvTime', 'OvTip', 'OvDone', 'OvLater', 'OvSkip') { $C[$n] = $Ov.FindName($n) }
 foreach ($n in 'ToastBar', 'ToastTitle', 'ToastText', 'ToastOk', 'ToastClose') { $C[$n] = $Toast.FindName($n) }
+foreach ($n in 'MnKicker', 'MnTitle', 'MnTime', 'MnColA', 'MnColB', 'MnFill', 'MnInstr', 'MnTip', 'MnDone', 'MnLater', 'MnSkip') { $C[$n] = $Mini.FindName($n) }
+foreach ($n in 'DispFull', 'DispWindow', 'DispTray') { $C[$n] = $Win.FindName($n) }
 foreach ($k in $C.Keys) { if ($null -eq $C[$k]) { throw "control not found: $k" } }
 
 # ---------- نشان برنامه ----------
@@ -908,70 +956,97 @@ function Stop-Music {
 }
 
 # ---------- متن‌ها ----------
-$EyeTips = @(
-    (T 'eyeTip1'),
-    (T 'eyeTip2'),
-    (T 'eyeTip3'),
-    (T 'eyeTip4')
-)
-$MoveTips = @(
-    (T 'moveTip1'),
-    (T 'moveTip2'),
-    (T 'moveTip3'),
-    (T 'moveTip4'),
-    (T 'moveTip5'),
-    (T 'moveTip6'),
-    (T 'moveTip7'),
-    (T 'moveTip8')
-)
-$DashTips = @(
-    (T 'dashTip1'),
-    (T 'dashTip2'),
-    (T 'dashTip3'),
-    (T 'dashTip4'),
-    (T 'dashTip5'),
-    (T 'dashTip6'),
-    (T 'dashTip7')
-)
+# هر گروه فعالیت از کلیدهای شماره‌دار lang.json خوانده می‌شود (eyeTip1، eyeTip2، ...)
+function Pool($prefix) {
+    $a = @(); $i = 1
+    while ($L.ContainsKey("$prefix$i")) { $a += $L["$prefix$i"]; $i++ }
+    , $a
+}
+$EyeTips = Pool 'eyeTip'; $MoveTips = Pool 'moveTip'; $WaterTips = Pool 'waterTip'; $DashTips = Pool 'dashTip'
+# فعالیت‌ها به ترتیب تصادفی و بدون تکرار داده می‌شوند تا همه‌ی گروه یک دور دیده شود
+$Decks = @{}
+function Next-Tips($name, $pool, $count) {
+    $out = @()
+    for ($n = 0; $n -lt $count; $n++) {
+        if (-not $Decks[$name] -or $Decks[$name].Count -eq 0) {
+            $Decks[$name] = New-Object Collections.ArrayList (, @($pool | Get-Random -Count $pool.Count))
+        }
+        $out += $Decks[$name][0]; $Decks[$name].RemoveAt(0)
+    }
+    , $out
+}
+function Tips-Text($tips) { if ($tips.Count -gt 1) { ($tips | ForEach-Object { "• $_" }) -join "`n" } else { [string]$tips[0] } }
 
 # ---------- وضعیت ----------
 $St = @{ Eye = 0.0; Move = 0.0; Water = 0.0; Paused = $false; Break = $null; Last = [DateTime]::UtcNow
     Away = $false; Toast = 0.0; SaveAcc = 0.0; TipAcc = 0.0; TipIdx = 0; Dirty = $false; Loading = $true; Exiting = $false; HintShown = $false
 }
 
-function Start-Break($type) {
+function Start-Break($type, $preview) {
     if ($St.Break) { return }
     $Toast.Hide(); $St.Toast = 0
     if ($type -eq 'eye') {
-        $dur = $Cfg.EyeDuration; $col = $COL.eye
-        $C.OvKicker.Text = (T 'ovEyeKicker'); $C.OvTitle.Text = (T 'ovEyeTitle')
-        $C.OvInstr.Text = (T 'ovEyeInstr')
-        $tips = $EyeTips; $C.OvDone.Visibility = 'Collapsed'; $music = 'calm'
+        $dur = $Cfg.EyeDuration; $col = $COL.eye; $pool = $EyeTips; $music = 'calm'; $doneVis = 'Collapsed'
+        $kicker = (T 'ovEyeKicker'); $title = (T 'ovEyeTitle'); $instr = (T 'ovEyeInstr')
     } else {
-        $dur = $Cfg.MoveDuration; $col = $COL.move
-        $C.OvKicker.Text = (T 'ovMoveKicker'); $C.OvTitle.Text = (T 'ovMoveTitle')
-        $C.OvInstr.Text = (T 'ovMoveInstr')
-        $tips = $MoveTips; $C.OvDone.Visibility = 'Visible'; $music = 'active'
+        $dur = $Cfg.MoveDuration; $col = $COL.move; $pool = $MoveTips; $music = 'active'; $doneVis = 'Visible'
+        $kicker = (T 'ovMoveKicker'); $title = (T 'ovMoveTitle'); $instr = (T 'ovMoveInstr')
     }
-    $C.OvKicker.Foreground = Br $col; $C.OvArc.Stroke = Br $col; $C.OvDone.Background = Br $col
-    $St.Break = @{ Type = $type; Total = [double]$dur; Left = [double]$dur; Tips = $tips; TipIdx = (Get-Random -Maximum $tips.Count); TipAcc = 0.0 }
-    $C.OvTip.Text = $tips[$St.Break.TipIdx]
-    Update-Overlay
-    if ($SelfTest) { $Ov.Background = Br '#0A0F1C' }
-    $Ov.Left = 0; $Ov.Top = 0
-    $Ov.Width = [Windows.SystemParameters]::PrimaryScreenWidth; $Ov.Height = [Windows.SystemParameters]::PrimaryScreenHeight
-    $Ov.Show()
-    Play-Fx 'start'; Start-Music $music
+    # در استراحت کوتاه یک فعالیت و در استراحت بلندتر دو فعالیت یادآوری می‌شود
+    $count = 2; if ($dur -lt 30) { $count = 1 }
+    # پیش‌نمایش تنظیمات: چند ثانیه نمونه، بدون اثر روی آمار و زمان‌سنج‌ها
+    if ($preview) { $dur = 8; $count = 2; $kicker = "$(T 'previewTag') · $kicker" }
+    $mode = [string]$Cfg.BreakMode
+    $St.Break = @{ Type = $type; Total = [double]$dur; Left = [double]$dur; Pool = $pool; Count = $count; TipAcc = 0.0; Mode = $mode; Preview = [bool]$preview
+        TipsText = (Tips-Text (Next-Tips $type $pool $count))
+    }
+    $brush = Br $col
+    if ($mode -eq 'full') {
+        $C.OvKicker.Text = $kicker; $C.OvTitle.Text = $title; $C.OvInstr.Text = $instr; $C.OvDone.Visibility = $doneVis
+        $C.OvKicker.Foreground = $brush; $C.OvArc.Stroke = $brush; $C.OvDone.Background = $brush
+        $C.OvTip.Text = $St.Break.TipsText
+        Update-Overlay
+        if ($SelfTest) { $Ov.Background = Br '#0A0F1C' }
+        $Ov.Left = 0; $Ov.Top = 0
+        $Ov.Width = [Windows.SystemParameters]::PrimaryScreenWidth; $Ov.Height = [Windows.SystemParameters]::PrimaryScreenHeight
+        $Ov.Show()
+    } elseif ($mode -eq 'window') {
+        $C.MnKicker.Text = $kicker; $C.MnTitle.Text = $title; $C.MnInstr.Text = $instr; $C.MnDone.Visibility = $doneVis
+        $C.MnKicker.Foreground = $brush; $C.MnFill.Background = $brush; $C.MnDone.Background = $brush
+        $C.MnTip.Text = $St.Break.TipsText
+        Update-Overlay
+        $wa = [Windows.SystemParameters]::WorkArea
+        $Mini.Left = $wa.Right - $Mini.Width - 10; $Mini.Top = $wa.Bottom - 260
+        $Mini.Show(); Place-Mini
+    } else {
+        # فقط اعلان کنار ساعت؛ استراحت بی‌صدا در پس‌زمینه شمرده می‌شود و پایانش با زنگ اعلام می‌شود
+        if ($script:Tray) { $script:Tray.ShowBalloonTip(10000, $title, ($instr + "`n" + $St.Break.TipsText), 'None') }
+    }
+    Play-Fx 'start'
+    if ($mode -ne 'tray') { Start-Music $music }
     Update-UI
+}
+function Place-Mini {
+    $Mini.UpdateLayout()
+    $wa = [Windows.SystemParameters]::WorkArea
+    $Mini.Top = $wa.Bottom - $Mini.ActualHeight - 10
 }
 function Update-Overlay {
     $b = $St.Break; if (-not $b) { return }
-    Set-Arc $C.OvArc ($b.Left / $b.Total) 140 126
-    $C.OvTime.Text = Fmt $b.Left
+    $frac = [math]::Max(0.0, [math]::Min(1.0, $b.Left / $b.Total))
+    if ($b.Mode -eq 'full') {
+        Set-Arc $C.OvArc $frac 140 126
+        $C.OvTime.Text = Fmt $b.Left
+    } elseif ($b.Mode -eq 'window') {
+        $C.MnTime.Text = Fmt $b.Left
+        $C.MnColA.Width = New-Object Windows.GridLength ($frac, [Windows.GridUnitType]::Star)
+        $C.MnColB.Width = New-Object Windows.GridLength ((1.0 - $frac), [Windows.GridUnitType]::Star)
+    }
 }
 function End-Break($how) {
     $b = $St.Break; if (-not $b) { return }
-    $St.Break = $null; $Ov.Hide(); Stop-Music
+    $St.Break = $null; $Ov.Hide(); $Mini.Hide(); Stop-Music
+    if ($b.Preview) { $St.Last = [DateTime]::UtcNow; Update-UI; return }
     if ($how -eq 'later') {
         if ($b.Type -eq 'eye') { $St.Eye = [math]::Max(0, $Cfg.EyeInterval * 60 - 300) } else { $St.Move = [math]::Max(0, $Cfg.MoveInterval * 60 - 300) }
     } else {
@@ -986,9 +1061,14 @@ function End-Break($how) {
     Save-Stats; Update-UI
 }
 function Show-WaterToast {
+    $wtip = [string](Next-Tips 'water' $WaterTips 1)[0]
+    if ($Cfg.BreakMode -eq 'tray') {
+        if ($script:Tray) { $script:Tray.ShowBalloonTip(8000, (T 'toastWaterTitle'), ((T 'toastWaterText') + "`n" + $wtip), 'None') }
+        Play-Fx 'notify'; return
+    }
     $C.ToastTitle.Text = (T 'toastWaterTitle')
-    $C.ToastText.Text = (T 'toastWaterText')
-    $wa = [Windows.SystemParameters]::WorkArea
+    $C.ToastText.Text = (T 'toastWaterText') + "`n" + $wtip
+    $wa =[Windows.SystemParameters]::WorkArea
     $Toast.Left = $wa.Right - $Toast.Width - 10; $Toast.Top = $wa.Bottom - 200
     $Toast.Show(); $Toast.UpdateLayout()
     $Toast.Top = $wa.Bottom - $Toast.ActualHeight - 10; $St.Toast = 14.0
@@ -1033,6 +1113,7 @@ function Load-Controls {
     }
     $C.CkSound.IsChecked = $Cfg.Sound; $C.CkMusic.IsChecked = $Cfg.Music; $C.CkIdle.IsChecked = $Cfg.IdleDetect
     $C.ThDark.IsChecked = ($Cfg.Theme -eq 'dark'); $C.ThLight.IsChecked = ($Cfg.Theme -eq 'light'); $C.ThAuto.IsChecked = ($Cfg.Theme -eq 'auto')
+    $C.DispFull.IsChecked = ($Cfg.BreakMode -eq 'full'); $C.DispWindow.IsChecked = ($Cfg.BreakMode -eq 'window'); $C.DispTray.IsChecked = ($Cfg.BreakMode -eq 'tray')
     Update-MusicNames
     $St.Loading = $false
     Update-Desc
@@ -1051,7 +1132,10 @@ function Tick {
     if ($St.Break) {
         $b = $St.Break
         $b.Left -= [math]::Min($dt, 5); $b.TipAcc += $dt
-        if ($b.TipAcc -ge 20) { $b.TipAcc = 0; $b.TipIdx = ($b.TipIdx + 1) % $b.Tips.Count; $C.OvTip.Text = $b.Tips[$b.TipIdx] }
+        if ($b.TipAcc -ge 30 -and $b.Left -gt 12 -and $b.Mode -ne 'tray') {
+            $b.TipAcc = 0; $b.TipsText = Tips-Text (Next-Tips $b.Type $b.Pool $b.Count)
+            if ($b.Mode -eq 'full') { $C.OvTip.Text = $b.TipsText } else { $C.MnTip.Text = $b.TipsText; Place-Mini }
+        }
         if ($b.Left -le 0) { End-Break 'done' } else { Update-Overlay }
         return
     }
@@ -1162,6 +1246,25 @@ $themeHandler = { param($s, $e)
     $Cfg.Theme = [string]$s.Tag; $St.Dirty = $true; Apply-Theme; Update-UI
 }
 foreach ($n in 'ThDark', 'ThLight', 'ThAuto') { $C[$n].add_Checked($themeHandler) }
+$dispHandler = { param($s, $e)
+    if ($St.Loading) { return }
+    $Cfg.BreakMode = [string]$s.Tag; $St.Dirty = $true
+    # همان لحظه یک نمونه‌ی چندثانیه‌ای در حالت انتخاب‌شده نشان داده می‌شود
+    if ($St.Break -and $St.Break.Preview) { End-Break 'skip' }
+    Start-Break 'move' $true
+}
+# پیش‌نمایش صدا: کمی پس از رها کردن لغزنده‌ی بلندی صدا، زنگ با همان بلندی پخش می‌شود
+$VolTimer = New-Object Windows.Threading.DispatcherTimer
+$VolTimer.Interval = [TimeSpan]::FromMilliseconds(350)
+$VolTimer.add_Tick({ $VolTimer.Stop(); $p = $Players['notify']; $p.Stop(); $p.Position = [TimeSpan]::Zero; $p.Volume = (Vol); $p.Play() })
+function Play-Sample($slot, $seconds) {
+    if ($St.Break) { return }
+    $m = $Cfg.Music; $Cfg.Music = $true; Start-Music $slot; $Cfg.Music = $m; $Au.TestLeft = [double]$seconds
+}
+foreach ($n in 'DispFull', 'DispWindow', 'DispTray') { $C[$n].add_Checked($dispHandler) }
+$C.MnDone.add_Click({ End-Break 'done' })
+$C.MnLater.add_Click({ End-Break 'later' })
+$C.MnSkip.add_Click({ End-Break 'skip' })
 $playHandler = { param($s, $e)
     if ($Au.Current) { Stop-Music; $Au.TestLeft = 0 }
     else { $m = $Cfg.Music; $Cfg.Music = $true; Start-Music ([string]$s.Tag); $Cfg.Music = $m; $Au.TestLeft = 15.0 }
@@ -1173,12 +1276,12 @@ $pickHandler = { param($s, $e)
     $dlg.Filter = "$(T 'filterAudio')|*.mp3;*.wav;*.wma;*.m4a;*.aac|$(T 'filterAll')|*.*"
     if ($dlg.ShowDialog($Win)) {
         $Cfg[$key] = $dlg.FileName; $St.Dirty = $true
-        if ($key -eq 'MusicEye') { Reload-Music 'calm' } else { Reload-Music 'active' }
+        if ($key -eq 'MusicEye') { Reload-Music 'calm'; Play-Sample 'calm' 10 } else { Reload-Music 'active'; Play-Sample 'active' 10 }
     }
 }
 $defHandler = { param($s, $e)
     $key = [string]$s.Tag; $Cfg[$key] = ''; $St.Dirty = $true
-    if ($key -eq 'MusicEye') { Reload-Music 'calm' } else { Reload-Music 'active' }
+    if ($key -eq 'MusicEye') { Reload-Music 'calm'; Play-Sample 'calm' 8 } else { Reload-Music 'active'; Play-Sample 'active' 8 }
 }
 foreach ($n in 'MuEyePlay', 'MuMovePlay') { $C[$n].add_Click($playHandler) }
 foreach ($n in 'MuEyePick', 'MuMovePick') { $C[$n].add_Click($pickHandler) }
@@ -1195,14 +1298,20 @@ $sliderHandler = { param($s, $e)
     $k = [string]$s.Tag; $v = [int]$s.Value
     $Cfg[$k] = $v; $C["${k}Val"].Text = ValText $k $v
     $St.Dirty = $true
-    if ($k -eq 'Volume' -and $Au.Current) { $Au.Current.Volume = (Vol) * 0.85 }
+    if ($k -eq 'Volume') {
+        if ($Au.Current) { $Au.Current.Volume = (Vol) * 0.85 } else { $VolTimer.Stop(); $VolTimer.Start() }
+    }
     Update-Desc; Update-UI
 }
 foreach ($d in $SliderDefs) { $C["$($d.K)Sl"].add_ValueChanged($sliderHandler) }
 $checkHandler = { param($s, $e)
     if ($St.Loading) { return }
-    $Cfg[[string]$s.Tag] = [bool]$s.IsChecked; $St.Dirty = $true
+    $tag = [string]$s.Tag
+    $Cfg[$tag] = [bool]$s.IsChecked; $St.Dirty = $true
     if (-not $Cfg.Music) { Stop-Music }
+    # پیش‌نمایش: با روشن‌کردن هر گزینه، نمونه‌ی همان صدا پخش می‌شود
+    if ($tag -eq 'Sound' -and $Cfg.Sound) { Play-Fx 'notify' }
+    if ($tag -eq 'Music' -and $Cfg.Music) { Play-Sample 'calm' 6 }
 }
 foreach ($ck in 'CkSound', 'CkMusic', 'CkIdle') { $C[$ck].add_Click($checkHandler) }
 $C.CkAuto.IsChecked = (Test-Path $LnkPath)
@@ -1254,6 +1363,13 @@ $Timer.Interval = [TimeSpan]::FromMilliseconds(500)
 $Timer.add_Tick({ try { Tick } catch { Log "tick: $_ $($_.ScriptStackTrace)" } })
 $St.Last = [DateTime]::UtcNow
 $Timer.Start()
+if ($Demo) {
+    # ابزار آزمون: چند ثانیه پس از اجرا یک استراحت چشم را در حالت نمایش خواسته‌شده نشان می‌دهد (تنظیم ذخیره نمی‌شود)
+    $DemoTimer = New-Object Windows.Threading.DispatcherTimer
+    $DemoTimer.Interval = [TimeSpan]::FromMilliseconds(3000)
+    $DemoTimer.add_Tick({ $DemoTimer.Stop(); $prev = $Cfg.BreakMode; $Cfg.BreakMode = $Demo; Start-Break 'eye'; $Cfg.BreakMode = $prev })
+    $DemoTimer.Start()
+}
 if ($SwitchTo) {
     # ابزار آزمون: چند ثانیه پس از اجرا زبان را عوض می‌کند تا مسیر راه‌اندازی دوباره سنجیده شود
     $SwTimer = New-Object Windows.Threading.DispatcherTimer
@@ -1333,8 +1449,16 @@ if ($SelfTest) {
             { Shot $Ov 'g-move.png' },
             { End-Break 'skip'; Start-Break 'eye' },
             { Shot $Ov 'h-eye.png' },
-            { End-Break 'skip'; Show-WaterToast },
+            { End-Break 'skip'; $Cfg.BreakMode = 'window'; Start-Break 'move' },
+            { Shot $Mini 'j-mini-move.png' },
+            { End-Break 'skip'; Start-Break 'eye' },
+            { Shot $Mini 'k-mini-eye.png' },
+            { End-Break 'skip'; $Cfg.BreakMode = 'tray'; Start-Break 'eye'; Log "tray mode: break=$([bool]$St.Break) overlay=$($Ov.IsVisible) mini=$($Mini.IsVisible) tips=[$($St.Break.TipsText)]" },
+            { End-Break 'done'; Log "tray break ended: eyeStat=$($Stats.Eye)"; $St.Eye = 444.0; $Win.Show(); $C.NavSettings.IsChecked = $true; $C.DispWindow.IsChecked = $true; Log "preview started: preview=$($St.Break.Preview) mode=$($St.Break.Mode) total=$($St.Break.Total) cfg=$($Cfg.BreakMode)" },
+            { Shot $Mini 'l-preview.png' },
+            { End-Break 'done'; Log "preview ended: eyeStat=$($Stats.Eye) moveStat=$($Stats.Move) skipped=$($Stats.Skipped) eyeTimer=$([int]$St.Eye) break=$([bool]$St.Break)"; $Win.Hide(); $Cfg.BreakMode = 'full'; Show-WaterToast },
             { Shot $Toast 'i-toast.png' },
+            { Log "pools eye=$($EyeTips.Count) move=$($MoveTips.Count) water=$($WaterTips.Count) dash=$($DashTips.Count)"; $seen = @{}; for ($q = 0; $q -lt $MoveTips.Count; $q++) { $seen[[string](Next-Tips 'probe' $MoveTips 1)[0]] = 1 }; Log "deck: $($seen.Count) distinct of $($MoveTips.Count) in one round" },
             { Log "lang=$LangCode missing-check done"; Log 'selftest done'; Quit-App }
         )
     }

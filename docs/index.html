@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SalamatYar — free break reminder for Windows</title>
+<meta name="description" content="SalamatYar is a free, open-source break reminder for Windows: eye breaks with the 20-20-20 rule, movement and stretch breaks, and water reminders. Five languages, no installation, no data leaves your computer.">
+<meta name="keywords" content="break reminder, eye strain, 20-20-20 rule, ergonomics, stretch reminder, water reminder, Windows, open source, digital wellbeing">
+<meta property="og:title" content="SalamatYar — free break reminder for Windows">
+<meta property="og:description" content="Eye breaks, movement and water reminders. Five languages, no installation, open source.">
+<meta property="og:image" content="https://alavifar.github.io/SalamatYar/social-preview.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root { --bg:#0f1524; --card:#161e31; --line:#212b45; --text:#f2f5fb; --muted:#8a96b2; --body:#c5cde0; --accent:#2dd4bf; --ink:#06221e; }
+  @media (prefers-color-scheme: light) {
+    :root { --bg:#f4f6fb; --card:#ffffff; --line:#dfe4ee; --text:#111827; --muted:#6b7280; --body:#374151; --accent:#0d9488; --ink:#ffffff; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--body); font-family:"Segoe UI", system-ui, -apple-system, Roboto, Tahoma, sans-serif; line-height:1.65; }
+  .wrap { max-width:1040px; margin:0 auto; padding:0 16px; }
+  header { padding:56px 0 28px; text-align:center; }
+  h1 { color:var(--text); font-size:clamp(30px, 6vw, 46px); margin:0 0 10px; line-height:1.2; }
+  h2 { color:var(--text); font-size:24px; margin:44px 0 14px; }
+  .lead { font-size:18px; max-width:680px; margin:0 auto 22px; }
+  .btn { display:inline-block; background:var(--accent); color:var(--ink); font-weight:600; text-decoration:none; padding:13px 26px; border-radius:12px; margin:6px; }
+  .btn.ghost { background:transparent; color:var(--text); border:1px solid var(--line); }
+  .note { color:var(--muted); font-size:14px; margin-top:10px; }
+  img { max-width:100%; height:auto; border-radius:14px; display:block; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(230px, 1fr)); gap:14px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px; }
+  .card h3 { color:var(--text); margin:0 0 6px; font-size:17px; }
+  .card p { margin:0; font-size:15px; }
+  .shots { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:14px; }
+  .fa { direction:rtl; font-family:Vazirmatn, "Segoe UI", Tahoma, sans-serif; }
+  footer { margin:48px 0 32px; color:var(--muted); font-size:14px; text-align:center; }
+  a { color:var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>SalamatYar</h1>
+    <p class="lead">A free, open-source break reminder for people who spend hours at a computer. Eye breaks, movement and water, in five languages.</p>
+    <a class="btn" href="https://github.com/alavifar/SalamatYar/raw/main/dist/SalamatYar.zip">Download for Windows</a>
+    <a class="btn ghost" href="https://github.com/alavifar/SalamatYar">Source code on GitHub</a>
+    <p class="note">Windows 10 and 11 · no installation · MIT license · no data leaves your computer</p>
+  </header>
+
+  <img src="dashboard-en.png" alt="SalamatYar dashboard with eye break, movement and water timers">
+
+  <h2>What it does</h2>
+  <div class="grid">
+    <div class="card"><h3>Eye breaks</h3><p>Every 20 minutes, look about 6 metres away for 20 seconds: the 20-20-20 rule.</p></div>
+    <div class="card"><h3>Move and stretch</h3><p>Every 30 minutes, stand up and move for 2 minutes, with suggested stretches.</p></div>
+    <div class="card"><h3>Water</h3><p>A gentle reminder every hour, with a small hydration tip.</p></div>
+    <div class="card"><h3>58 activities</h3><p>One or two per reminder, with no repeats until you have seen the whole set.</p></div>
+    <div class="card"><h3>Three reminder styles</h3><p>Full screen, a small corner window, or only a notification next to the clock.</p></div>
+    <div class="card"><h3>Yours to tune</h3><p>Change every timing, pick your own music, choose dark or light theme.</p></div>
+  </div>
+
+  <h2>Screenshots</h2>
+  <div class="shots">
+    <img src="eye-break-en.png" alt="Full-screen eye break with a countdown">
+    <img src="reminder-window-en.png" alt="Small reminder window in the corner of the screen">
+    <img src="languages.png" alt="Language menu with Persian, English, Arabic, Russian and Chinese">
+    <img src="settings-en.png" alt="Settings page">
+  </div>
+
+  <h2>How to run</h2>
+  <p>Download the ZIP, extract the whole folder and double-click <b>SalamatYar.exe</b>. The program is not code-signed, so Windows may show a warning the first time; choose <b>More info</b>, then <b>Run anyway</b>. The full source is on GitHub.</p>
+  <p>The default timings follow published guidance from the American Optometric Association, UK HSE, OSHA and WHO. SalamatYar is a reminder tool and does not replace medical advice.</p>
+
+  <h2 class="fa">سلامت‌یار به فارسی</h2>
+  <p class="fa">سلامت‌یار یک یادآور رایگان و متن‌باز برای کسانی است که ساعت‌ها پشت کامپیوتر می‌نشینند: استراحت چشم با قانون ۲۰-۲۰-۲۰، تحرک و کشش، و یادآوری نوشیدن آب. پنج زبان دارد، نصب نمی‌خواهد و هیچ داده‌ای از سیستم شما بیرون نمی‌رود.</p>
+  <p class="fa"><a class="btn" href="https://github.com/alavifar/SalamatYar/raw/main/dist/SalamatYar.zip">دانلود برای ویندوز</a></p>
+  <img src="dashboard-fa.png" alt="داشبورد سلامت‌یار به فارسی">
+
+  <footer>
+    Made by Seyed Hamidreza Alavifar · <a href="https://t.me/ShrAlavifar">Telegram</a> · <a href="https://github.com/alavifar/SalamatYar">GitHub</a>
+  </footer>
+</div>
+</body>
+</html>
