@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0 preview (cross-platform edition, in `app/`)
+
+- A new edition built with Tauri for Windows, macOS and Linux. The Windows edition 1.3 stays the stable release.
+- Same features: eye, movement and water reminders, three reminder styles, 58 activities, five languages, themes, statistics, absence detection, chimes and break music, custom music files, settings preview.
+- Changing the language no longer restarts the app.
+- Settings and statistics are stored in the user's configuration folder.
+
 ## 1.3
 
 - Three reminder styles: full screen, a small window in the corner of the screen, or only a notification next to the Windows clock.

@@ -77,6 +77,10 @@ A single PowerShell script (`SalamatYar.ps1`) with a WPF interface, so it runs o
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) to add a language, fix a translation or change the code, and [CHANGELOG.md](CHANGELOG.md) for the release history.
 
+## macOS and Linux
+
+A cross-platform edition for Windows, macOS and Linux is being built with Tauri in the [app/](app/) folder. It is a preview and needs testers, especially on macOS and Linux. See [app/README.md](app/README.md).
+
 ## License
 
 [MIT](LICENSE). You may use, change and share it freely; keep the copyright notice.

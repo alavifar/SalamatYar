@@ -50,6 +50,10 @@ powershell -NoProfile -ExecutionPolicy Bypass -File SalamatYar.ps1 -SelfTest -La
 
 Look at the screenshots before opening a pull request, especially for long texts that may overflow.
 
+## Cross-platform edition
+
+The folder `app/` holds a preview of SalamatYar for Windows, macOS and Linux, built with Tauri. It reads the same `lang.json`, so a translation fix reaches both editions. See [app/README.md](app/README.md) for how to build, test and preview it. Testing on macOS and Linux is the most useful help right now.
+
 ## Health content
 
 Changes to the default timings or to the health guide need a source from a recognised body (for example AOA, AAO, OSHA, HSE or WHO). Please cite it in the pull request.

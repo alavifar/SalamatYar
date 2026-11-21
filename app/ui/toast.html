@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SalamatYar</title>
+<link rel="icon" href="logo.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="mini">
+<div class="mn toast" id="box">
+  <h2 data-t="toastWaterTitle"></h2>
+  <p class="instr" id="text"></p>
+  <div class="acts">
+    <button class="btn small" id="ok" data-t="btnDrank"></button>
+    <button class="ghost small" id="close" data-t="btnClose"></button>
+  </div>
+</div>
+<script src="mock.js"></script>
+<script src="common.js"></script>
+<script>
+'use strict';
+// The water reminder: a small message in the corner of the screen.
+let lastHeight = 0;
+function render(s) {
+  if (!s.toast) return;
+  if (s.cfg.theme !== document.documentElement.dataset.theme) setTheme(s.cfg.theme);
+  if (s.cfg.lang !== SY.lang) setLang(s.cfg.lang);
+  $('text').textContent = t('toastWaterText') + '\n' + t('waterTip' + s.toast.tip);
+  $('text').style.whiteSpace = 'pre-line';
+  const h = Math.ceil($('box').getBoundingClientRect().height);
+  if (Math.abs(h - lastHeight) > 1) {
+    lastHeight = h;
+    backend.invoke('fit_window', { height: h });
+  }
+}
+(async () => {
+  $('ok').addEventListener('click', () => backend.invoke('drink'));
+  $('close').addEventListener('click', () => backend.invoke('close_toast'));
+  render(await boot());
+  backend.listen('state', render);
+  report('toast ready text=' + $('text').textContent.length);
+})();
+</script>
+</body>
+</html>

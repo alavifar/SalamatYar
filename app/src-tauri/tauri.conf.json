@@ -1,0 +1,43 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "SalamatYar",
+  "version": "2.0.0",
+  "identifier": "io.github.alavifar.salamatyar",
+  "build": {
+    "frontendDist": "../ui"
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [
+      {
+        "label": "main",
+        "title": "SalamatYar",
+        "width": 1010,
+        "height": 740,
+        "minWidth": 860,
+        "minHeight": 620,
+        "center": true,
+        "visible": false
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "category": "Utility",
+    "shortDescription": "Health reminders for computer work",
+    "longDescription": "Eye breaks with the 20-20-20 rule, movement and stretch breaks, and water reminders. Five languages. No data leaves your computer.",
+    "copyright": "Copyright (c) 2026 Seyed Hamidreza Alavifar",
+    "license": "MIT"
+  }
+}

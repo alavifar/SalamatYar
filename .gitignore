@@ -10,3 +10,9 @@ resume.json
 
 # Sounds are generated on first run
 sounds/
+
+# Cross-platform edition (app/): dependencies and build output
+app/node_modules/
+app/src-tauri/target/
+app/src-tauri/gen/
+app/dist/
