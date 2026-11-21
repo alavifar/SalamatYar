@@ -35,8 +35,8 @@
       "icons/icon.ico"
     ],
     "category": "Utility",
-    "shortDescription": "Health reminders for computer work",
-    "longDescription": "Eye breaks with the 20-20-20 rule, movement and stretch breaks, and water reminders. Five languages. No data leaves your computer.",
+    "shortDescription": "Health reminders for computer work, for Windows, macOS and Linux",
+    "longDescription": "Eye breaks with the 20-20-20 rule, movement and stretch breaks, and water reminders. Runs on Windows, macOS and Linux. Five languages. No data leaves your computer.",
     "copyright": "Copyright (c) 2026 Seyed Hamidreza Alavifar",
     "license": "MIT"
   }

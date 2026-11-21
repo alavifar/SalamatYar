@@ -2,6 +2,13 @@
   "_comment": "Texts of the cross-platform edition that differ from lang.json (no Windows-only wording). Same order of languages as lang.json.",
   "_order": ["fa", "en", "ar", "ru", "zh"],
   "strings": {
+    "aboutDesc": [
+      "یادآور سلامت هنگام کار با کامپیوتر: استراحت چشم با قانون ۲۰-۲۰-۲۰، شکستن نشستن طولانی، یادآوری آب و نکته‌های ارگونومی، همراه با زنگ و موسیقی. برای ویندوز، مک و لینوکس.",
+      "Health reminders for computer work: eye breaks with the 20-20-20 rule, breaking up long sitting, water reminders and ergonomics tips, with chimes and music. For Windows, macOS and Linux.",
+      "تذكير صحي أثناء العمل على الحاسوب: راحة العين بقاعدة 20-20-20، قطع الجلوس الطويل، تذكير بشرب الماء ونصائح لوضعية العمل، مع رنين وموسيقى. لأنظمة ويندوز وماك ولينكس.",
+      "Напоминания о здоровье при работе за компьютером: отдых для глаз по правилу 20-20-20, перерывы в сидении, напоминания о воде и советы по эргономике, со звуком и музыкой. Для Windows, macOS и Linux.",
+      "电脑工作健康提醒：按 20-20-20 法则休息眼睛、打断久坐、提醒喝水和人体工学提示，并配有提示音和音乐。支持 Windows、macOS 和 Linux。"
+    ],
     "ckAuto": [
       "اجرای خودکار هنگام روشن‌شدن سیستم",
       "Start automatically when you sign in",

@@ -1,16 +1,26 @@
-# SalamatYar — free break reminder for Windows
+# SalamatYar — free break reminder for Windows, macOS and Linux
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-0d9488)](LICENSE)
-![Platform: Windows 10 and 11](https://img.shields.io/badge/platform-Windows%2010%20%7C%2011-2563eb)
+![Platform: Windows, macOS, Linux](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-2563eb)
 ![Languages: 5](https://img.shields.io/badge/languages-fa%20%7C%20en%20%7C%20ar%20%7C%20ru%20%7C%20zh-7c3aed)
 ![No installation](https://img.shields.io/badge/install-not%20needed-d97706)
 [![Downloads](https://img.shields.io/github/downloads/alavifar/SalamatYar/total?color=0d9488)](https://github.com/alavifar/SalamatYar/releases)
 
-A free, open-source health reminder for people who spend hours at a computer: eye breaks with the 20-20-20 rule, movement and stretch breaks, and water reminders. Windows 10 and 11, nothing to install, no data leaves your computer.
+A free, open-source health reminder for people who spend hours at a computer: eye breaks with the 20-20-20 rule, movement and stretch breaks, and water reminders. It runs on Windows, macOS and Linux, and no data leaves your computer.
 
 **Languages:** فارسی · English · العربية · Русский · 中文 — [راهنمای فارسی](README.fa.md)
 
-**[⬇ Download SalamatYar (ZIP, ready to run)](https://github.com/alavifar/SalamatYar/releases/latest/download/SalamatYar.zip)**
+## Download
+
+| System | Edition | Download |
+| --- | --- | --- |
+| Windows 10 and 11 | 1.3, stable, nothing to install | **[SalamatYar.zip](https://github.com/alavifar/SalamatYar/releases/latest/download/SalamatYar.zip)** |
+| macOS (Intel and Apple silicon) | 2.0 preview | [SalamatYar_2.0.0_universal.dmg](https://github.com/alavifar/SalamatYar/releases/download/app-v2.0.0/SalamatYar_2.0.0_universal.dmg) |
+| Linux (Debian, Ubuntu) | 2.0 preview | [SalamatYar_2.0.0_amd64.deb](https://github.com/alavifar/SalamatYar/releases/download/app-v2.0.0/SalamatYar_2.0.0_amd64.deb) |
+| Linux (other distributions) | 2.0 preview | [SalamatYar_2.0.0_amd64.AppImage](https://github.com/alavifar/SalamatYar/releases/download/app-v2.0.0/SalamatYar_2.0.0_amd64.AppImage) |
+| Windows, installer | 2.0 preview | [SalamatYar_2.0.0_x64-setup.exe](https://github.com/alavifar/SalamatYar/releases/download/app-v2.0.0/SalamatYar_2.0.0_x64-setup.exe) |
+
+The 2.0 preview is the cross-platform edition, built with Tauri. It has the same features as 1.3, but the macOS and Linux builds have not yet been tested on real machines; [reports are welcome](https://github.com/alavifar/SalamatYar/issues). The apps are not code-signed: on macOS, choose **Open Anyway** in Privacy & Security the first time.
 
 ![Dashboard](docs/dashboard-en.png)
 
@@ -35,7 +45,7 @@ If SalamatYar helps you, a ⭐ on this repository helps other people find it.
 | --- | --- |
 | ![Settings](docs/settings-en.png) | ![Persian](docs/dashboard-fa.png) |
 
-## Run it
+## Run it on Windows (edition 1.3)
 
 1. [Download SalamatYar.zip](https://github.com/alavifar/SalamatYar/releases/latest/download/SalamatYar.zip) and extract the whole folder.
 2. Double-click `SalamatYar.exe`.
@@ -63,6 +73,8 @@ The app never connects to the internet. Settings and statistics are stored only 
 
 **Is it really free?** Yes. It is released under the MIT license, with no ads, accounts or tracking.
 
+**Does it work on macOS and Linux?** Yes, with the 2.0 preview from the download table above. It is new on those systems, so please report anything that does not work.
+
 **Why does Windows warn me?** The launcher is not code-signed. The whole source is in this repository, and you can start the app with `Run.cmd` instead of the launcher.
 
 **Can I change the timings?** Yes, everything is in Settings, with a button to return to the recommended values.
@@ -73,14 +85,11 @@ The app never connects to the internet. Settings and statistics are stored only 
 
 ## How it is built
 
+There are two editions with the same features and the same texts (`lang.json`). The cross-platform edition in [app/](app/) is written in Rust with an HTML interface (Tauri 2); see [app/README.md](app/README.md). The Windows edition is described below.
+
 A single PowerShell script (`SalamatYar.ps1`) with a WPF interface, so it runs on a stock Windows installation with nothing to install. Sounds and music are synthesized by the app itself. All interface text lives in `lang.json`. `tools/build.ps1` compiles the launcher and builds the download package with the C# compiler that ships with Windows.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) to add a language, fix a translation or change the code, and [CHANGELOG.md](CHANGELOG.md) for the release history.
-
-## macOS and Linux
-
-A cross-platform edition for Windows, macOS and Linux is being built with Tauri in the [app/](app/) folder. It is a preview and needs testers, especially on macOS and Linux. See [app/README.md](app/README.md).
-
 ## License
 
 [MIT](LICENSE). You may use, change and share it freely; keep the copyright notice.

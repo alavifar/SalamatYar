@@ -1,10 +1,20 @@
 # سلامت‌یار
 
-یادآور رایگان سلامت هنگام کار با کامپیوتر، برای ویندوز ۱۰ و ۱۱. به نصب هیچ چیز نیاز ندارد.
+یادآور رایگان سلامت هنگام کار با کامپیوتر، برای ویندوز، مک و لینوکس.
 
 **زبان‌ها:** فارسی · English · العربية · Русский · 中文 — [English README](README.md)
 
-**[دانلود سلامت‌یار (فایل ZIP، آماده‌ی اجرا)](https://github.com/alavifar/SalamatYar/releases/latest/download/SalamatYar.zip)**
+## دانلود
+
+| سیستم‌عامل | نسخه | دانلود |
+| --- | --- | --- |
+| ویندوز ۱۰ و ۱۱ | ۱٫۳، پایدار، بدون نصب | **[SalamatYar.zip](https://github.com/alavifar/SalamatYar/releases/latest/download/SalamatYar.zip)** |
+| مک (اینتل و اپل سیلیکون) | ۲٫۰ آزمایشی | [SalamatYar_2.0.0_universal.dmg](https://github.com/alavifar/SalamatYar/releases/download/app-v2.0.0/SalamatYar_2.0.0_universal.dmg) |
+| لینوکس (دبیان و اوبونتو) | ۲٫۰ آزمایشی | [SalamatYar_2.0.0_amd64.deb](https://github.com/alavifar/SalamatYar/releases/download/app-v2.0.0/SalamatYar_2.0.0_amd64.deb) |
+| لینوکس (بقیه‌ی توزیع‌ها) | ۲٫۰ آزمایشی | [SalamatYar_2.0.0_amd64.AppImage](https://github.com/alavifar/SalamatYar/releases/download/app-v2.0.0/SalamatYar_2.0.0_amd64.AppImage) |
+| ویندوز، با فایل نصب | ۲٫۰ آزمایشی | [SalamatYar_2.0.0_x64-setup.exe](https://github.com/alavifar/SalamatYar/releases/download/app-v2.0.0/SalamatYar_2.0.0_x64-setup.exe) |
+
+نسخه‌ی ۲٫۰ نسخه‌ی چندسکویی برنامه است که با Tauri ساخته شده و همان امکانات نسخه‌ی ۱٫۳ را دارد. نسخه‌ی مک و لینوکس هنوز روی دستگاه واقعی آزموده نشده است؛ اگر ایرادی دیدید [گزارش بدهید](https://github.com/alavifar/SalamatYar/issues). برنامه امضای دیجیتال ندارد: روی مک بار اول از Privacy & Security گزینه‌ی **Open Anyway** را بزنید.
 
 ![داشبورد](docs/dashboard-fa.png)
 
@@ -19,7 +29,7 @@
 - آمار روزانه، تشخیص غیبت از پشت سیستم و راهنمای ارگونومی با ذکر منبع.
 - پوسته‌ی تاریک، روشن یا خودکار. همه‌ی عددها قابل تغییر است و هر تنظیم همان لحظه پیش‌نمایش دارد.
 
-## اجرا
+## اجرا روی ویندوز (نسخه‌ی ۱٫۳)
 
 1. [فایل SalamatYar.zip](https://github.com/alavifar/SalamatYar/releases/latest/download/SalamatYar.zip) را دانلود کنید و کل پوشه را از حالت فشرده خارج کنید.
 2. روی `SalamatYar.exe` دوبار کلیک کنید.
@@ -43,11 +53,10 @@
 
 برنامه به اینترنت وصل نمی‌شود. تنظیمات و آمار فقط در پوشه‌ی خود برنامه ذخیره می‌شود.
 
-## مک و لینوکس
-
-نسخه‌ی چندسکویی برنامه برای ویندوز، مک و لینوکس با Tauri در پوشه‌ی [app/](app/) در حال ساخت است. این نسخه هنوز آزمایشی است و به آزمایش روی مک و لینوکس نیاز دارد. راهنما: [app/README.md](app/README.md).
-
 ## مشارکت
+
+کد نسخه‌ی چندسکویی در پوشه‌ی [app/](app/) است و راهنمای ساخت آن در [app/README.md](app/README.md). آزمایش روی مک و لینوکس الان مفیدترین کمک است.
+
 
 برای افزودن زبان، اصلاح ترجمه یا تغییر کد، [CONTRIBUTING.md](CONTRIBUTING.md) را ببینید.
 
