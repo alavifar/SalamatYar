@@ -10,7 +10,7 @@ use std::path::PathBuf;
 use std::time::SystemTime;
 
 pub const VERSION: &str = env!("CARGO_PKG_VERSION");
-pub const LANGS: [&str; 5] = ["fa", "en", "ar", "ru", "zh"];
+pub const LANGS: [&str; 6] = ["fa", "en", "ar", "ru", "zh", "sv"];
 
 // ---------- texts ----------
 
@@ -663,7 +663,7 @@ mod tests {
         let l = Lang::load();
         assert_eq!(l.order, LANGS);
         for (k, v) in &l.strings {
-            assert_eq!(v.len(), 5, "key {k}");
+            assert_eq!(v.len(), LANGS.len(), "key {k}");
             assert!(v.iter().all(|s| !s.trim().is_empty()), "key {k}");
         }
         assert_eq!(l.pool_len("eyeTip"), 14);

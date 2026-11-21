@@ -6,7 +6,7 @@ if (!window.__TAURI__) {
   const q = new URLSearchParams(location.search);
   const listeners = [];
   const state = {
-    version: '2.0.0',
+    version: '2.0.1',
     cfg: {
       eyeInterval: 20, eyeDuration: 20, moveInterval: 30, moveDuration: 120, waterInterval: 60,
       idleReset: 5, idleDetect: true, sound: true, music: true, volume: 60,

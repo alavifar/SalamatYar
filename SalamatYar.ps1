@@ -252,7 +252,7 @@ if (Test-Path $StatsFile) {
 function Save-Stats { try { $Stats | ConvertTo-Json | Set-Content $StatsFile -Encoding UTF8 } catch { Log "save stats: $_" } }
 
 # ---------- زبان ----------
-$LangNames = [ordered]@{ fa = 'فارسی'; en = 'English'; ar = 'العربية'; ru = 'Русский'; zh = '中文' }
+$LangNames = [ordered]@{ fa = 'فارسی'; en = 'English'; ar = 'العربية'; ru = 'Русский'; zh = '中文'; sv = 'Svenska' }
 function Detect-Lang {
     $codes = @($LangNames.Keys)
     foreach ($ci in @([Globalization.CultureInfo]::CurrentUICulture, [Globalization.CultureInfo]::CurrentCulture)) {
@@ -260,7 +260,7 @@ function Detect-Lang {
         if ($two -ne 'en' -and $codes -contains $two) { return $two }
     }
     try { $inp = @([Windows.Forms.InputLanguage]::InstalledInputLanguages | ForEach-Object { $_.Culture.TwoLetterISOLanguageName }) } catch { $inp = @() }
-    foreach ($k in 'fa', 'ar', 'ru', 'zh') { if ($inp -contains $k) { return $k } }
+    foreach ($k in 'fa', 'ar', 'ru', 'zh', 'sv') { if ($inp -contains $k) { return $k } }
     'en'
 }
 if ($Lang) { $Cfg.Lang = $Lang }
@@ -357,7 +357,7 @@ function Set-Arc($path, $frac, $c, $r) {
 $COL = @{ eye = '#2DD4BF'; move = '#FBBF24'; water = '#60A5FA' }
 
 # ---------- شناسنامه و نشان برنامه ----------
-$AppVersion = '1.3'
+$AppVersion = '1.4'
 $AuthorName = (T 'authorName')
 $AuthorLink = 'https://t.me/ShrAlavifar'
 $Signature = "$(T 'sigPrefix') $AuthorName — Telegram: $([char]0x200E)@ShrAlavifar"
@@ -563,6 +563,7 @@ $MainXaml = @'
                   <Button x:Name="LgAr" Tag="ar" Style="{StaticResource Ghost}" Margin="0,2" MinWidth="130" Padding="14,7"/>
                   <Button x:Name="LgRu" Tag="ru" Style="{StaticResource Ghost}" Margin="0,2" MinWidth="130" Padding="14,7"/>
                   <Button x:Name="LgZh" Tag="zh" Style="{StaticResource Ghost}" Margin="0,2" MinWidth="130" Padding="14,7"/>
+                  <Button x:Name="LgSv" Tag="sv" Style="{StaticResource Ghost}" Margin="0,2" MinWidth="130" Padding="14,7"/>
                 </StackPanel>
               </Border>
             </Popup>
@@ -867,7 +868,7 @@ $names = 'Header', 'NavDash', 'NavSettings', 'NavGuide', 'BtnMin', 'BtnClose', '
 'StWork', 'StEye', 'StMove', 'StWater', 'StSkip', 'TipText', 'StatusDot', 'StatusText', 'BtnReset', 'BtnPause',
 'BtnDefaults', 'CkSound', 'CkMusic', 'CkIdle', 'CkAuto', 'BtnTestChime',
 'MuEyeName', 'MuEyePlay', 'MuEyePick', 'MuEyeDef', 'MuMoveName', 'MuMovePlay', 'MuMovePick', 'MuMoveDef', 'ThDark', 'ThLight', 'ThAuto',
-'BtnLang', 'LangPop', 'LgFa', 'LgEn', 'LgAr', 'LgRu', 'LgZh',
+'BtnLang', 'LangPop', 'LgFa', 'LgEn', 'LgAr', 'LgRu', 'LgZh', 'LgSv',
 'NavAbout', 'PageAbout', 'LogoImg', 'AboutLogo', 'AboutVer', 'AboutName', 'BtnTelegram', 'SigMain', 'BtnShortcut'
 foreach ($n in $names) { $C[$n] = $Win.FindName($n) }
 $C['OvSig'] = $Ov.FindName('OvSig')
@@ -887,7 +888,7 @@ $Win.Icon = $LogoSrc; $C.LogoImg.Source = $LogoSrc; $C.AboutLogo.Source = $LogoS
 $verShown = $AppVersion; if ($LangCode -eq 'fa') { $verShown = $AppVersion.Replace('.', '٫') }
 $C.AboutVer.Text = Fa ((T 'verFmt') -f $verShown)
 $C.BtnLang.Content = "$($LangNames[$LangCode])  ▾"
-$C.LgFa.Content = $LangNames.fa; $C.LgEn.Content = $LangNames.en; $C.LgAr.Content = $LangNames.ar; $C.LgRu.Content = $LangNames.ru; $C.LgZh.Content = $LangNames.zh
+$C.LgFa.Content = $LangNames.fa; $C.LgEn.Content = $LangNames.en; $C.LgAr.Content = $LangNames.ar; $C.LgRu.Content = $LangNames.ru; $C.LgZh.Content = $LangNames.zh; $C.LgSv.Content = $LangNames.sv
 $C.AboutName.Text = $AuthorName
 $C.SigMain.Text = $Signature; $C.OvSig.Text = $Signature
 
@@ -1222,7 +1223,7 @@ function Set-Lang($code) {
     $App.Shutdown()
 }
 $C.BtnLang.add_Click({ $C.LangPop.IsOpen = -not $C.LangPop.IsOpen })
-foreach ($n in 'LgFa', 'LgEn', 'LgAr', 'LgRu', 'LgZh') { $C[$n].add_Click({ param($s, $e) Set-Lang ([string]$s.Tag) }) }
+foreach ($n in 'LgFa', 'LgEn', 'LgAr', 'LgRu', 'LgZh', 'LgSv') { $C[$n].add_Click({ param($s, $e) Set-Lang ([string]$s.Tag) }) }
 $C.BtnTelegram.add_Click({ try { Start-Process $AuthorLink } catch { Log "link: $_" } })
 $C.SigMain.add_MouseLeftButtonUp({ try { Start-Process $AuthorLink } catch { Log "link: $_" } })
 $C.BtnShortcut.add_Click({

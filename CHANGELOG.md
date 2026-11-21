@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4 and 2.0.1
+
+- Swedish added as the sixth language, in both editions.
+- 2.0.1: the portable Windows build registers its app id, so that the notification-only reminder style works without installing.
+
 ## 2.0 preview (cross-platform edition, in `app/`)
 
 - A new edition built with Tauri for Windows, macOS and Linux. The Windows edition 1.3 stays the stable release.

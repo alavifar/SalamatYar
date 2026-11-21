@@ -36,13 +36,13 @@ foreach ($k in $keys.Keys) {
         if ($s -match '[&<>"]') { [void]$issues.Add("FORBIDDEN-CHAR: $k/$lg") }
         $ph = ([regex]::Matches($s, '\{\d\}') | ForEach-Object { $_.Value } | Sort-Object) -join ''
         if ($ph -ne $ph0) { [void]$issues.Add("PLACEHOLDER: $k/$lg '$ph' vs '$ph0'") }
-        if ($lg -in 'en', 'ru', 'zh' -and $s -match '[؀-ۿ]') { [void]$issues.Add("ARABIC-SCRIPT-IN-$lg`: $k") }
+        if ($lg -in 'en', 'ru', 'zh', 'sv' -and $s -match '[؀-ۿ]') { [void]$issues.Add("ARABIC-SCRIPT-IN-$lg`: $k") }
         if ($lg -eq 'ar' -and $s -match '[پچژگکی۰-۹]') { [void]$issues.Add("PERSIAN-LETTER-IN-ar: $k") }
         if ($latinOk -notcontains $k) {
             if ($lg -eq 'ru' -and $s -notmatch '[Ѐ-ӿ]') { [void]$issues.Add("NO-CYRILLIC: $k") }
             if ($lg -eq 'zh' -and $s -notmatch '[一-鿿]') { [void]$issues.Add("NO-CJK: $k") }
             if ($lg -eq 'ar' -and $s -notmatch '[؀-ۿ]') { [void]$issues.Add("NO-ARABIC: $k") }
-            if ($lg -eq 'en' -and $s -notmatch '[A-Za-z]') { [void]$issues.Add("NO-LATIN: $k") }
+            if ($lg -in 'en', 'sv' -and $s -notmatch '[A-Za-z]') { [void]$issues.Add("NO-LATIN: $k/$lg") }
             if ($i -gt 0 -and $lg -ne 'ar' -and $s -eq [string]$v[0]) { [void]$issues.Add("SAME-AS-FA: $k/$lg") }
         }
     }

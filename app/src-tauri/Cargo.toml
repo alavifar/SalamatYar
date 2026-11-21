@@ -1,6 +1,6 @@
 [package]
 name = "salamatyar"
-version = "2.0.0"
+version = "2.0.1"
 description = "Health reminders for computer work"
 authors = ["Seyed Hamidreza Alavifar"]
 license = "MIT"

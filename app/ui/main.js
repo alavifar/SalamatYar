@@ -1,7 +1,7 @@
 'use strict';
 // Main window: dashboard, settings, health guide, about.
 
-const LANG_NAMES = { fa: 'فارسی', en: 'English', ar: 'العربية', ru: 'Русский', zh: '中文' };
+const LANG_NAMES = { fa: 'فارسی', en: 'English', ar: 'العربية', ru: 'Русский', zh: '中文', sv: 'Svenska' };
 const CARDS = [
   { id: 'eye', title: 'cardEye', btn: 'btnEyeNow', c: 'eye' },
   { id: 'move', title: 'cardMove', btn: 'btnMoveNow', c: 'move' },

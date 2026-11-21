@@ -1,48 +1,61 @@
 {
   "_comment": "Texts of the cross-platform edition that differ from lang.json (no Windows-only wording). Same order of languages as lang.json.",
-  "_order": ["fa", "en", "ar", "ru", "zh"],
+  "_order": [
+    "fa",
+    "en",
+    "ar",
+    "ru",
+    "zh",
+    "sv"
+  ],
   "strings": {
     "aboutDesc": [
       "یادآور سلامت هنگام کار با کامپیوتر: استراحت چشم با قانون ۲۰-۲۰-۲۰، شکستن نشستن طولانی، یادآوری آب و نکته‌های ارگونومی، همراه با زنگ و موسیقی. برای ویندوز، مک و لینوکس.",
       "Health reminders for computer work: eye breaks with the 20-20-20 rule, breaking up long sitting, water reminders and ergonomics tips, with chimes and music. For Windows, macOS and Linux.",
       "تذكير صحي أثناء العمل على الحاسوب: راحة العين بقاعدة 20-20-20، قطع الجلوس الطويل، تذكير بشرب الماء ونصائح لوضعية العمل، مع رنين وموسيقى. لأنظمة ويندوز وماك ولينكس.",
       "Напоминания о здоровье при работе за компьютером: отдых для глаз по правилу 20-20-20, перерывы в сидении, напоминания о воде и советы по эргономике, со звуком и музыкой. Для Windows, macOS и Linux.",
-      "电脑工作健康提醒：按 20-20-20 法则休息眼睛、打断久坐、提醒喝水和人体工学提示，并配有提示音和音乐。支持 Windows、macOS 和 Linux。"
+      "电脑工作健康提醒：按 20-20-20 法则休息眼睛、打断久坐、提醒喝水和人体工学提示，并配有提示音和音乐。支持 Windows、macOS 和 Linux。",
+      "Hälsopåminnelser för datorarbete: ögonpauser enligt 20-20-20-regeln, avbrott i långvarigt sittande, vattenpåminnelser och ergonomitips, med ljudsignaler och musik. För Windows, macOS och Linux."
     ],
     "ckAuto": [
       "اجرای خودکار هنگام روشن‌شدن سیستم",
       "Start automatically when you sign in",
       "التشغيل تلقائيا عند بدء النظام",
       "Запускать при входе в систему",
-      "登录系统时自动启动"
+      "登录系统时自动启动",
+      "Starta automatiskt vid inloggning"
     ],
     "balloonText": [
       "برنامه در نوار سیستم می‌ماند و یادآوری می‌کند. برای خروج از فهرست نشان آن استفاده کن.",
       "The app stays in the system tray and keeps reminding you. Use the menu of its icon to exit.",
       "يبقى البرنامج في شريط النظام ويواصل التذكير. استخدم قائمة أيقونته للخروج.",
       "Программа остаётся в системном трее и продолжает напоминать. Для выхода используйте меню значка.",
-      "程序会留在系统托盘继续提醒。可通过图标菜单退出。"
+      "程序会留在系统托盘继续提醒。可通过图标菜单退出。",
+      "Appen ligger kvar i systemfältet och fortsätter påminna dig. Använd ikonens meny för att avsluta."
     ],
     "ttDispTray": [
       "فقط یک اعلان کوچک سیستم",
       "Only a small system notification",
       "إشعار صغير من النظام فقط",
       "Только небольшое системное уведомление",
-      "仅显示一条系统小通知"
+      "仅显示一条系统小通知",
+      "Endast en liten systemavisering"
     ],
     "ttThAuto": [
       "هماهنگ با پوسته‌ی سیستم",
       "Follows the system theme",
       "يتبع مظهر النظام",
       "Как в системе",
-      "跟随系统主题"
+      "跟随系统主题",
+      "Följer systemets tema"
     ],
     "aboutFree": [
       "این برنامه رایگان است و استفاده و بازنشر آن برای همه آزاد است. هیچ داده‌ای از سیستم شما بیرون نمی‌رود؛ تنظیمات و آمار فقط روی همین دستگاه ذخیره می‌شود.",
       "This app is free, and everyone may use and share it. No data leaves your computer; settings and statistics are stored only on this device.",
       "هذا البرنامج مجاني، واستخدامه وإعادة نشره متاحان للجميع. لا تخرج أي بيانات من حاسوبك؛ الإعدادات والإحصاءات تحفظ على هذا الجهاز فقط.",
       "Программа бесплатна, её можно свободно использовать и распространять. Никакие данные не покидают ваш компьютер; настройки и статистика хранятся только на этом устройстве.",
-      "本程序免费，任何人都可以使用和分享。没有任何数据离开您的电脑，设置和统计只保存在本设备上。"
+      "本程序免费，任何人都可以使用和分享。没有任何数据离开您的电脑，设置和统计只保存在本设备上。",
+      "Appen är gratis, och alla får använda och dela den. Inga data lämnar din dator; inställningar och statistik sparas bara på den här enheten."
     ]
   }
 }

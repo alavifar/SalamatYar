@@ -14,4 +14,4 @@ labels: translation
 
 **Suggested text:**
 
-The Arabic, Russian and Chinese texts were written by a non-native speaker, so corrections are especially welcome. You can also edit `lang.json` directly and open a pull request; see CONTRIBUTING.md.
+The Arabic, Russian, Chinese and Swedish texts were written by a non-native speaker, so corrections are especially welcome. You can also edit `lang.json` directly and open a pull request; see CONTRIBUTING.md.

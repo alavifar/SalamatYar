@@ -2,25 +2,25 @@
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-0d9488)](LICENSE)
 ![Platform: Windows, macOS, Linux](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-2563eb)
-![Languages: 5](https://img.shields.io/badge/languages-fa%20%7C%20en%20%7C%20ar%20%7C%20ru%20%7C%20zh-7c3aed)
+![Languages: 6](https://img.shields.io/badge/languages-fa%20%7C%20en%20%7C%20ar%20%7C%20ru%20%7C%20zh%20%7C%20sv-7c3aed)
 ![No installation](https://img.shields.io/badge/install-not%20needed-d97706)
 [![Downloads](https://img.shields.io/github/downloads/alavifar/SalamatYar/total?color=0d9488)](https://github.com/alavifar/SalamatYar/releases)
 
 A free, open-source health reminder for people who spend hours at a computer: eye breaks with the 20-20-20 rule, movement and stretch breaks, and water reminders. It runs on Windows, macOS and Linux, and no data leaves your computer.
 
-**Languages:** فارسی · English · العربية · Русский · 中文 — [راهنمای فارسی](README.fa.md)
+**Languages:** فارسی · English · العربية · Русский · 中文 · Svenska — [راهنمای فارسی](README.fa.md)
 
 ## Download
 
 | System | Edition | Download |
 | --- | --- | --- |
-| Windows 10 and 11 | 1.3, stable, nothing to install | **[SalamatYar.zip](https://github.com/alavifar/SalamatYar/releases/latest/download/SalamatYar.zip)** |
-| macOS (Intel and Apple silicon) | 2.0 preview | [SalamatYar_2.0.0_universal.dmg](https://github.com/alavifar/SalamatYar/releases/download/app-v2.0.0/SalamatYar_2.0.0_universal.dmg) |
-| Linux (Debian, Ubuntu) | 2.0 preview | [SalamatYar_2.0.0_amd64.deb](https://github.com/alavifar/SalamatYar/releases/download/app-v2.0.0/SalamatYar_2.0.0_amd64.deb) |
-| Linux (other distributions) | 2.0 preview | [SalamatYar_2.0.0_amd64.AppImage](https://github.com/alavifar/SalamatYar/releases/download/app-v2.0.0/SalamatYar_2.0.0_amd64.AppImage) |
-| Windows, installer | 2.0 preview | [SalamatYar_2.0.0_x64-setup.exe](https://github.com/alavifar/SalamatYar/releases/download/app-v2.0.0/SalamatYar_2.0.0_x64-setup.exe) |
+| Windows 10 and 11 | 1.4, stable, nothing to install | **[SalamatYar.zip](https://github.com/alavifar/SalamatYar/releases/latest/download/SalamatYar.zip)** |
+| macOS (Intel and Apple silicon) | 2.0 preview | [SalamatYar_2.0.1_universal.dmg](https://github.com/alavifar/SalamatYar/releases/download/app-v2.0.1/SalamatYar_2.0.1_universal.dmg) |
+| Linux (Debian, Ubuntu) | 2.0 preview | [SalamatYar_2.0.1_amd64.deb](https://github.com/alavifar/SalamatYar/releases/download/app-v2.0.1/SalamatYar_2.0.1_amd64.deb) |
+| Linux (other distributions) | 2.0 preview | [SalamatYar_2.0.1_amd64.AppImage](https://github.com/alavifar/SalamatYar/releases/download/app-v2.0.1/SalamatYar_2.0.1_amd64.AppImage) |
+| Windows, installer | 2.0 preview | [SalamatYar_2.0.1_x64-setup.exe](https://github.com/alavifar/SalamatYar/releases/download/app-v2.0.1/SalamatYar_2.0.1_x64-setup.exe) |
 
-The 2.0 preview is the cross-platform edition, built with Tauri. It has the same features as 1.3, but the macOS and Linux builds have not yet been tested on real machines; [reports are welcome](https://github.com/alavifar/SalamatYar/issues). The apps are not code-signed: on macOS, choose **Open Anyway** in Privacy & Security the first time.
+The 2.0 preview is the cross-platform edition, built with Tauri. It has the same features as 1.4, but the macOS and Linux builds have not yet been tested on real machines; [reports are welcome](https://github.com/alavifar/SalamatYar/issues). The apps are not code-signed: on macOS, choose **Open Anyway** in Privacy & Security the first time.
 
 ![Dashboard](docs/dashboard-en.png)
 
@@ -37,7 +37,7 @@ If SalamatYar helps you, a ⭐ on this repository helps other people find it.
 - Daily statistics, absence detection (time away from the computer counts as a break) and an ergonomics guide with sources.
 - Dark, light and automatic themes. Every timing can be changed, and each setting shows a preview the moment you change it.
 
-| Full screen | Small window | Five languages |
+| Full screen | Small window | Languages |
 | --- | --- | --- |
 | ![Eye break](docs/eye-break-en.png) | ![Small window](docs/reminder-window-en.png) | ![Languages](docs/languages.png) |
 
@@ -45,7 +45,7 @@ If SalamatYar helps you, a ⭐ on this repository helps other people find it.
 | --- | --- |
 | ![Settings](docs/settings-en.png) | ![Persian](docs/dashboard-fa.png) |
 
-## Run it on Windows (edition 1.3)
+## Run it on Windows (edition 1.4)
 
 1. [Download SalamatYar.zip](https://github.com/alavifar/SalamatYar/releases/latest/download/SalamatYar.zip) and extract the whole folder.
 2. Double-click `SalamatYar.exe`.

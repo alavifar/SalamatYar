@@ -7,7 +7,7 @@ Thank you for helping. Issues and pull requests are welcome in English or Persia
 | File | Purpose |
 | --- | --- |
 | `SalamatYar.ps1` | The whole app: timers, WPF interface, sound synthesis |
-| `lang.json` | All interface text, one entry per key, five languages in a fixed order |
+| `lang.json` | All interface text, one entry per key, six languages in a fixed order |
 | `Run.cmd` | Starts the app without a console window |
 | `tools/audit-lang.ps1` | Checks that `lang.json` is complete and consistent |
 | `launcher/Launcher.cs` | Source of `SalamatYar.exe`, a small launcher that starts the script without a console window |
@@ -19,7 +19,7 @@ After changing the app, run `tools\build.ps1` so that `dist/SalamatYar.zip` matc
 
 ## Fix or improve a translation
 
-Edit the text in `lang.json`. Each key holds an array in the order given by `_order` (`fa`, `en`, `ar`, `ru`, `zh`). Then run the audit:
+Edit the text in `lang.json`. Each key holds an array in the order given by `_order` (`fa`, `en`, `ar`, `ru`, `zh`, `sv`). Then run the audit:
 
 ```
 powershell -NoProfile -ExecutionPolicy Bypass -File tools\audit-lang.ps1 -Dir .
@@ -32,7 +32,7 @@ Rules the audit enforces:
 - the characters `&`, `<`, `>` and `"` are not used (texts are inserted into XAML);
 - every key used by the app exists, and no key is unused.
 
-The Arabic, Russian and Chinese texts were written by a non-native speaker. Corrections from native speakers are especially welcome.
+The Arabic, Russian, Chinese and Swedish texts were written by a non-native speaker. Corrections from native speakers are especially welcome.
 
 ## Add a language
 
