@@ -19,6 +19,7 @@ A free, open-source health reminder for people who spend hours at a computer: ey
 | Linux (Debian, Ubuntu) | 2.0 preview | [SalamatYar_2.0.1_amd64.deb](https://github.com/alavifar/SalamatYar/releases/download/app-v2.0.1/SalamatYar_2.0.1_amd64.deb) |
 | Linux (other distributions) | 2.0 preview | [SalamatYar_2.0.1_amd64.AppImage](https://github.com/alavifar/SalamatYar/releases/download/app-v2.0.1/SalamatYar_2.0.1_amd64.AppImage) |
 | Windows, installer | 2.0 preview | [SalamatYar_2.0.1_x64-setup.exe](https://github.com/alavifar/SalamatYar/releases/download/app-v2.0.1/SalamatYar_2.0.1_x64-setup.exe) |
+| Windows, portable (no installation) | 2.0 preview | [SalamatYar_2.0.1_x64-portable.exe](https://github.com/alavifar/SalamatYar/releases/download/app-v2.0.1/SalamatYar_2.0.1_x64-portable.exe) |
 
 The 2.0 preview is the cross-platform edition, built with Tauri. It has the same features as 1.4, but the macOS and Linux builds have not yet been tested on real machines; [reports are welcome](https://github.com/alavifar/SalamatYar/issues). The apps are not code-signed: on macOS, choose **Open Anyway** in Privacy & Security the first time.
 

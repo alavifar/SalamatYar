@@ -13,6 +13,7 @@
 | لینوکس (دبیان و اوبونتو) | ۲٫۰ آزمایشی | [SalamatYar_2.0.1_amd64.deb](https://github.com/alavifar/SalamatYar/releases/download/app-v2.0.1/SalamatYar_2.0.1_amd64.deb) |
 | لینوکس (بقیه‌ی توزیع‌ها) | ۲٫۰ آزمایشی | [SalamatYar_2.0.1_amd64.AppImage](https://github.com/alavifar/SalamatYar/releases/download/app-v2.0.1/SalamatYar_2.0.1_amd64.AppImage) |
 | ویندوز، با فایل نصب | ۲٫۰ آزمایشی | [SalamatYar_2.0.1_x64-setup.exe](https://github.com/alavifar/SalamatYar/releases/download/app-v2.0.1/SalamatYar_2.0.1_x64-setup.exe) |
+| ویندوز، بدون نصب | ۲٫۰ آزمایشی | [SalamatYar_2.0.1_x64-portable.exe](https://github.com/alavifar/SalamatYar/releases/download/app-v2.0.1/SalamatYar_2.0.1_x64-portable.exe) |
 
 نسخه‌ی ۲٫۰ نسخه‌ی چندسکویی برنامه است که با Tauri ساخته شده و همان امکانات نسخه‌ی ۱٫۴ را دارد. نسخه‌ی مک و لینوکس هنوز روی دستگاه واقعی آزموده نشده است؛ اگر ایرادی دیدید [گزارش بدهید](https://github.com/alavifar/SalamatYar/issues). برنامه امضای دیجیتال ندارد: روی مک بار اول از Privacy & Security گزینه‌ی **Open Anyway** را بزنید.
 
